@@ -4,6 +4,7 @@ window.addEventListener("load", (e) => {
   const drawTool = document.getElementById("draw");
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
+
   window.addEventListener("resize", (e) => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -96,9 +97,6 @@ window.addEventListener("load", (e) => {
     loop();
     setInterval(loop, 10);
 
-    //this does nothing
-    function draw() {}
-
     function loop() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       //draw background
@@ -190,7 +188,6 @@ window.addEventListener("load", (e) => {
           player.yspeed = 0;
         }
       }
-      draw();
     }
 
     function isFree(x, y) {
@@ -212,7 +209,6 @@ window.addEventListener("load", (e) => {
       return true;
     }
 
-    //Draw Grid
     function drawGrid() {
       ctx.lineWidth = "1";
       ctx.strokeStyle = "rgb(50, 50, 50, 0.3)";
@@ -311,7 +307,6 @@ window.addEventListener("load", (e) => {
         camera.y += dragStart.y - e.clientY;
         dragStart.x = e.clientX;
         dragStart.y = e.clientY;
-        draw();
       }
     }
 
@@ -326,7 +321,6 @@ window.addEventListener("load", (e) => {
       } else {
         gridSpace *= 1.1;
       }
-      draw();
     }
 
     function beginStroke(e) {
