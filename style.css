@@ -1,0 +1,48 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: sans-serif;
+}
+
+canvas {
+    background-color: gainsboro;
+}
+
+#toolbar {
+    list-style-type: none;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+}
+
+.tool {
+    width: 3rem;
+    height: 3rem;
+    background-color: bisque;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    margin-top: 0;
+    user-select: none;
+    cursor: pointer;
+}
+
+.selected {
+    border: 5px solid rgb(218, 137, 32);
+}
+
+.tool:hover {
+    transform: scale(1.1);
+}
