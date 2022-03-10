@@ -97,28 +97,35 @@ if (typeof window !== "undefined") {
       });
       //canvas.addEventListener('wheel', changeZoomLevel);
       loop();
-      setInterval(loop, 10);
+      setInterval(loop, 100);
 
       socket.on('newStroke', newStroke => {
         console.log('new Stroke received');
         strokes.push(newStroke);
-      })
+        currentStroke = [];
+      });
 
       socket.on('playerState', newPlayer => {
         if (currentTool === 'draw') {
           player = newPlayer;
         }
-      })
+      });
 
       socket.on('cameraPos', newCamera => {
         if (currentTool === 'draw') {
           camera = newCamera;
         }
-      })
+      });
 
       socket.on('undo', () => {
         strokes.pop();
-      })
+      });
+
+      socket.on('currentStroke', newCurrentStroke => {
+        if (currentTool === 'move') {
+          currentStroke = newCurrentStroke;
+        }
+      });
 
       function loop() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -384,6 +391,7 @@ if (typeof window !== "undefined") {
           ) > strokeResolution
         ) {
           currentStroke.push(e.clientX + camera.x, e.clientY + camera.y);
+          socket.emit('currentStroke', currentStroke);
         }
         drawCurrentStroke(e);
       }

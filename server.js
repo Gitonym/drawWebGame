@@ -12,14 +12,18 @@ io.on('connection', socket => {
 
   socket.on('playerState', player => {
     socket.broadcast.emit('playerState', player);
-  })
+  });
 
   socket.on('cameraPos', camera => {
     socket.broadcast.emit('cameraPos', camera);
-  })
+  });
 
   socket.on('undo', () => {
     socket.broadcast.emit('undo');
+  });
+
+  socket.on('currentStroke', currentStroke => {
+    socket.broadcast.emit('currentStroke', currentStroke);
   });
 });
 
